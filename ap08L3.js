@@ -50,7 +50,7 @@ export function init(scene, size, id, offset, texture) {
     // ビル
     function makeBuiding(x, z, type){
         const height = [2, 2, 7, 4, 5];
-        const bldgH = height[type]*5;
+        const bldgH = height[type]*7;
         const geometry = new THREE.BoxGeometry(8, bldgH, 8);
         const material = new THREE.MeshLambertMaterial({map:texture});
         const sideUvS  =(type*2+1)/11;
@@ -72,10 +72,38 @@ export function init(scene, size, id, offset, texture) {
             geometry,
             material
         )
-        bldg.position.set(15, 5, 10);
+        bldg.position.set(-35, 5, 25);
         scene.add(bldg);
     }
     makeBuiding(20, 20, 0);
+    function makeBuiding2(x, z, type){
+        const height = [2, 2, 7, 4, 5];
+        const bldgH = height[type]*6;
+        const geometry = new THREE.BoxGeometry(8, bldgH, 8);
+        const material = new THREE.MeshLambertMaterial({map:texture});
+        const sideUvS  =(type*2+1)/11;
+        const sideUvE  =(type*2+2)/11;
+        const topUvS  =(type*2+2)/11;
+        const topUvE  =(type*2+3)/11;
+        const uvs = geometry.getAttribute("uv");
+        for(let i = 0; i < 48; i+=4){
+            if (i < 16 || i > 22){
+                uvs.array[i] = sideUvS;
+                uvs.array[i + 2] = sideUvE;
+            }
+            else{
+                uvs.array[i] = topUvS;
+                uvs.array[i + 2] = topUvE;
+            }
+        }
+        const bldg = new THREE.Mesh(
+            geometry,
+            material
+        )
+        bldg.position.set(-20, 5, 25);
+        scene.add(bldg);
+    }
+    makeBuiding2(20, 20, 4);
     // コース(描画)
     //制御点を補間して曲線を作る
     course = new THREE.CatmullRomCurve3(
