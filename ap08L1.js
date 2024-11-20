@@ -19,6 +19,8 @@ let course;
 export const origin = new THREE.Vector3();
 export const controlPoints = [
     [ 25, 40],
+    [  5,  0],
+    [-20, 20],
     [-50,-20]
 ]
 export function init(scene, size, id, offset, texture) {
@@ -60,7 +62,21 @@ export function init(scene, size, id, offset, texture) {
     )
     //曲線から100箇所取り出し,円を並べる
     const points = course.getPoints(100);
-
+    points.forEach((point)=>{
+        const road = new THREE.Mesh(
+            new THREE.CircleGeometry(5,16),
+            new THREE.MeshLambertMaterial({
+                color:"gray",
+            })
+        )
+        road.rotateX(-Math.PI/2);
+        road.position.set(
+            point.x,
+            0,
+            point.z
+        );
+        scene.add(road);
+    });
 }
 
 // コース(自動運転用)
