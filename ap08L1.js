@@ -149,12 +149,20 @@ export function resize() {
 const clock = new THREE.Clock();
 const carPosition = new THREE.Vector3();
 const carTarget = new THREE.Vector3();
+const cameraPosition = new THREE.Vector3();
 export function render(scene, car) {
     const time = (clock.getElapsedTime()/20);
     course.getPointAt(time%1,carPosition);
     car.position.copy(carPosition);
     course.getPointAt((time+0.01)%1,carTarget);
     car.lookAt(carTarget);
-    camera.lookAt(car.position.x, car.position.y, car.position.z);
+    cameraPosition.lerpVectors(carTarget,carPosition,4);
+    cameraPosition.y +=5.5;
+    cameraPosition.x +=5.0;
+    cameraPosition.z +=5.0;
+    camera.position.copy(cameraPosition);
+    camera.lookAt(car.position);
+    camera.up.set(0,1,0);
+    //camera.lookAt(car.position.x, car.position.y, car.position.z);
     renderer.render(scene, camera);
 }
