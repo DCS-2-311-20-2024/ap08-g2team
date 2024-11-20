@@ -81,22 +81,22 @@ export function init(scene, size, id, offset, texture) {
 
 // コース(自動運転用)
 export function makeCourse(scene) {
-    const course courseVectors=[];
-    const parts = [L1,L2,L3,L4];
-    parts.forEach((part)=> {    
-        parts.controlPoints.forEach((p)=>{
-            courseVectors.push(
-                new THREE.Vector3(
-                    p[0] + part.origin.x,
-                    0,
-                    p[1] + part.origin.z,
-                )
-            )
-        });
-    })
-    course = new THREE.CatmullRomCurve3(
-        courseVectors,true
-    )
+    // const courseVectors=[];
+    // const parts = [L1,L2,L3,L4];
+    // parts.forEach((part)=> {    
+    //     parts.controlPoints.forEach((p)=>{
+    //         courseVectors.push(
+    //             new THREE.Vector3(
+    //                 p[0] + part.origin.x,
+    //                 0,
+    //                 p[1] + part.origin.z,
+    //             )
+    //         )
+    //     });
+    // })
+    // course = new THREE.CatmullRomCurve3(
+    //     courseVectors,true
+    // )
 }
 
 // カメラを返す
