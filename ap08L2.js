@@ -50,8 +50,8 @@ export function init(scene, size, id, offset, texture) {
 
     // ビル
     function makeBuilding(x,z,type){
-        const height=[2,2,7,4,5];
-        const bldgH=height[type]*30;
+        const height=[5,2,7,4,5];
+        const bldgH=height[type]*5;
         const geometry=new THREE.BoxGeometry(8,bldgH,8);
         const material= new THREE.MeshLambertMaterial({map:texture});
         const sideUvS=(type*2+1)/11;
