@@ -157,7 +157,7 @@ export function render(scene, car) {
     course.getPointAt((time+0.01)%1,carTarget);
     car.lookAt(carTarget);
     cameraPosition.lerpVectors(carTarget,carPosition,4);
-    cameraPosition.y +=5.5;
+    cameraPosition.y +=2.5;
     cameraPosition.x +=5.0;
     cameraPosition.z +=5.0;
     camera.position.copy(cameraPosition);
