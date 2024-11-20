@@ -1,7 +1,7 @@
 //
 // 応用プログラミング 第8回 (ap08L1.js)
 //
-// G18400-2021 拓殖太郎
+// G284092022 五十嵐健翔
 //
 
 "use strict"; // 厳格モード
@@ -48,6 +48,18 @@ export function init(scene, size, id, offset, texture) {
     // ビル
 
     // コース(描画)
+    // 制御点を補間して曲線を作る
+    course = new THREE.CatmullRomCurve3(
+        controlPoints.map((p)=>{
+            return (new THREE.Vector3()).set(
+                offset.x+p[0],
+                0,
+                offset.z+p[1]
+            );
+        }),false
+    )
+    //曲線から100箇所取り出し,円を並べる
+    const points = course.getPoints(100);
 
 }
 
